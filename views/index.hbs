@@ -1,9 +1,65 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Example</title>
-    </head>
-    <body>
-        <p>This is an example of a simple HTML page with one paragraph.</p>
-    </body>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8" />
+	<title>Hap</title>
+	<meta name="description" content="Hap is a new way to share yourself, discover yourself and follow people you care about. ">
+	<meta name="keywords" content="hap, hapshot, social, app, hap.sh, blog, microblog, social network">
+	<meta name="viewport" content="width=device-width">
+	<link rel="stylesheet" href="css/style.css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" href="img/hap.png" />
+</head>
+
+<body class="body_one">
+	<section class="bienvenue">
+
+		<div class="lol" id="Hi">
+			<!--<img src="img/mascotte.png" alt="">-->
+		</div>
+		<div class="lol">
+			<!--<div class="LogInBar">
+				<form class="" action="index.html" method="post">
+					<label for="name">username</label>
+					<input type="text" id="name" name="name" required>
+
+					<label for="name">password</label>
+					<input type="password" id="name" name="name" required>
+					<button type="button">
+		    		Log In
+					</button>
+				</form>
+			</div>-->
+			<div class="lessmore">
+				<img src="img/hap.png" alt="">
+				{{#if hapshooter}}
+				<p>Vous êtes connecté à {{hapshooter}} </p>
+				{{/if}}
+				<h1>Tweet less, do more</h1>
+				<h2>Join the Hapshot community now</h2>
+			</div>
+			<a href="/login"><button>Login</button></a>
+			<a href="/register"><button>Sign Up</button></a>
+		</div>
+	</section>
+
+	<div class="footer">
+		<div id="contenu_fin">
+			<div class="row">
+				<div class="column" >
+					<h2><a href="/">Hap</a></h2>
+					<p><a href="http://netneer.com/">About me</a></p>
+					<p><a href="">News</a></p>
+				</div>
+				<div class="column" >
+					<h2><a href="/">About</a></h2>
+					<p><a href="privacy">Privacy</a></p>
+				</div>
+				<div class="column">
+					<p><b>© William-Arno CLEMENT</b></p>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
 </html>

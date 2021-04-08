@@ -1,0 +1,608 @@
+/* General */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap');
+html, body {
+	margin: 0 !important;
+	padding: 0 !important;
+	color:black;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	scroll-behavior: smooth;
+	height: 100%;
+	background-attachment: fixed;
+}
+.lol{
+	color:white;}
+
+	.feed_header{
+		width: 100%;
+	}
+
+	.feed_header textarea{
+		max-width: 95%;
+		height: 50px;
+		margin-top: 10px;
+		margin-bottom: 10px;
+		max-height: 50px;
+		padding: 20px;
+		width: 95%;
+		outline: none;
+		border-radius: 15px;
+		font-size: 15px;
+		font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+
+	}
+
+	.form-group input{
+		max-width: 95%;
+		height: 10px;
+		margin-top: 10px;
+		margin-bottom: 10px;
+		max-height: 50px;
+		padding: 20px;
+		width: 95%;
+		outline: none;
+		border-radius: 15px;
+		font-size: 15px;
+		font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	}
+
+	.backToHP a{
+		color: black;
+	}
+
+	.form-group input:focus{
+		max-width: 95%;
+		margin-top: 10px;
+		margin-bottom: 10px;
+		max-height: 50px;
+		padding: 20px;
+		outline: none;
+		border-radius: 15px;
+		outline: none;
+		font-size: 15px;
+		border-color: #01CDFF;
+	}
+
+	.action{
+		background: #01CDFF;
+		background-image: -webkit-linear-gradient(top, #01CDFF);
+		background-image: -moz-linear-gradient(top, #01CDFF);
+		background-image: -ms-linear-gradient(top, #01CDFF);
+		background-image: -o-linear-gradient(top, #01CDFF);
+		background-image: linear-gradient(to bottom, #01CDFF);
+		-webkit-border-radius: 28;
+		-moz-border-radius: 28;
+		border-radius: 28px;
+		font-family: Arial;
+		color: #ffffff;
+		font-size: 20px;
+		width: 200px;
+		padding: 10px 20px 10px 20px;
+		text-decoration: none;
+		border: none;
+	}
+
+	.feed{
+		margin-top: 40px;
+	}
+
+	.feed .message{
+		background-color: #EBEBEB;
+		padding: 10px;
+		margin: 0;
+		width:98%;
+		margin-bottom: 10px;
+		border-radius: 10px;
+		transition: 0.3s;
+
+	}
+
+	.feed .message:hover{
+		background-color: white;
+		padding: 10px;
+		margin: 0;
+		width:98%;
+		margin-bottom: 10px;
+		border-radius: 10px;
+		transition: 0.3s;
+
+	}
+
+	.feed_header textarea:focus{
+		max-width: 95%;
+		height: 50px;
+		margin-top: 10px;
+		margin-bottom: 10px;
+		max-height: 50px;
+		padding: 20px;
+		outline: none;
+		border-radius: 15px;
+		font-size: 15px;
+		border-color: #01CDFF;
+	}
+
+	.feed_header button{
+		float: right;
+		margin:0;
+	}
+	.feed_header .logo img{
+		width: 60px;
+		height: auto;
+		float: left;
+	}
+
+	.feed_header .shot_menu a{
+		color: black;
+		transition: 0.3s;
+		float:right;
+		padding-top: 15px;
+		padding-left: 10px;
+	}
+
+	a{
+		text-decoration: none;
+		color: white;
+	}
+
+	.footer a{
+		color: black;
+	}
+
+
+	/* Affichage Desktop */
+
+	@media (min-width: 1250px) {
+		.LogInBar{
+			padding-top: 40px;
+			padding-bottom: 40px;
+			text-align: right;
+			right:0;
+		}
+		.LogInBar input{
+			border-radius: 20px;
+			height: 30px;
+			outline:none;
+			padding-left: 5px;
+			padding-right: 5px;
+			border: none;
+		}
+		.LogInBar label{
+			padding-left: 10px;
+			color: black;
+		}
+		.LogInBar button{
+			border-radius: 10px;
+			height: 30px;
+			border: none;
+			overflow: hidden;
+			outline:none;
+			background-color: Transparent;
+			color: black;
+			font-size: 15px;
+		}
+		.column {
+			float: left;
+			width: 31%;
+			padding: 10px;
+			height: 300px; /* Should be removed. Only for demonstration */
+		}
+
+		.row:after {
+			content: "";
+			display: table;
+			clear: both;
+		}
+
+		@media screen and (max-width: 600px) {
+			.column {
+				width: 100%;
+			}
+		}
+
+		.contenu{
+			margin-top: 50px;
+			margin-left: auto;
+			margin-right: auto;
+			max-width: 500px;
+		}
+		.contenu h1{
+			font-size: 19px;
+			text-align: center;
+		}
+		.menu {
+			position: fixed;
+			left: 15px;
+			top: -11px;
+			bottom: 0;
+			padding-top: 0;
+			padding-left: 0px;
+			margin-bottom: 0;
+			border-right: 1px solid white;
+			border-left: 1px solid white;
+			color:white;
+		}
+
+		.menu_top {
+			display: block;
+			overflow: hidden;
+			width: 25px;
+			line-height: 25px;
+			padding: 10px 0;
+			margin: 10px 0 0;
+
+
+		}
+
+		#contenu_fin{
+			margin: 10px;
+			padding-left:30px;
+			padding-bottom:0px;
+			font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+
+		}
+
+		.menu_bottom {
+			display: block;
+			overflow: hidden;
+			width: 25px;
+			line-height: 25px;
+			padding: 100px 0;
+			margin-top: 42vh;
+
+		}
+
+		.menu_bottom_wac {
+			display: inline-block;
+			vertical-align: top;
+			transform: translate(0,100%) rotate(-90deg);
+			transform-origin: 0 0;
+			white-space: nowrap;
+		}
+
+		.menu_top_wac {
+			display: inline-block;
+			vertical-align: top;
+			transform: translate(0,100%) rotate(-90deg);
+			transform-origin: 0 0;
+			white-space: nowrap;
+		}
+
+		.menu_top_wac:after {
+			content: "";
+			float: left;
+			margin-top: 100%;
+		}
+
+		.menu_bottom_wac:after {
+			content: "";
+			float: left;
+			margin-top: 100%;
+		}
+
+		.bienvenue,.QuiSuisJe,.OuJeVais {
+			clip: rect(auto, auto, auto, auto);
+		}
+
+
+		.bienvenue {
+			background-color: white;
+			background-repeat:no-repeat;
+			background-position: center ;
+			background-size:cover;
+			height: 100vh;
+			line-height:20px;
+			transition: 0.2s;
+			position: relative;
+		}
+
+		.bienvenue h1{
+			font-size: 50px;
+			font-weight: bold;
+		}
+		.lessmore{
+			padding-top:39%;
+			color: black
+		}
+
+		.lessmore img{
+			width: auto;
+			height:70px;
+		}
+		.bienvenue h2{
+			font-size: 20px;
+		}
+		.bienvenue .lol{
+			font-size: 20px;
+			float: left;
+			width: 44%;
+			padding-left: 50px;
+			vertical-align: middle;
+		}
+
+		#Hi{
+			background-image: url("../img/bg.jpg");
+			background-size: cover;
+			height: 100%;
+		}
+
+		#Hi img{
+			margin: 0;
+			position: absolute;
+			top: 50%;
+			-ms-transform: translateY(-50%);
+			transform: translateY(-50%);
+			width: 40%;
+			text-align: center;
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		.bienvenue a{
+			padding-left: 10px;
+		}
+
+		.QuiSuisJe {
+			padding-top: 100px;
+			text-align: left;
+			background: white;
+			padding-left: 50px;
+			padding-bottom: 100px;
+			padding-right: 10px;
+		}
+		.QuiSuisJe  p{
+			font-size: 50px;
+		}
+		button:focus {outline:0;}
+		button {
+			background: #01CDFF;
+			background-image: -webkit-linear-gradient(top, #01CDFF);
+			background-image: -moz-linear-gradient(top, #01CDFF);
+			background-image: -ms-linear-gradient(top, #01CDFF);
+			background-image: -o-linear-gradient(top, #01CDFF);
+			background-image: linear-gradient(to bottom, #01CDFF);
+			-webkit-border-radius: 28;
+			-moz-border-radius: 28;
+			border-radius: 28px;
+			font-family: Arial;
+			color: #ffffff;
+			font-size: 20px;
+			width: 200px;
+			padding: 10px 20px 10px 20px;
+			text-decoration: none;
+			border: none;
+		}
+
+		.OuJeVais {
+			padding-top: 100px;
+			text-align: left;
+			background: #ffe680;
+			padding-left: 50px;
+			padding-right: 10px;
+			padding-bottom: 100px;
+		}
+
+		.OuJeVais  p{
+			font-size: 55px;
+		}
+
+		.MeContacter {
+			padding-top: 100px;
+			text-align: center;
+			background: white;
+			padding-bottom: 100px;
+		}
+
+		.MeContacter .abientot{
+			font-size: 50px;
+		}
+
+		.aplus{
+			padding-top: 100px;
+		}
+
+
+
+	}
+
+	/* Affichage Mobile */
+	@media (max-width: 1250px) {
+
+		.contenu{
+			margin-left: auto;
+			margin-right: auto;
+			max-width: 90%;
+			margin-top: 30px;
+		}
+		.contenu h1{
+			text-align: center;
+			font-size: 25px;
+		}
+		.menu {
+			position: fixed;
+			left: 15px;
+			top: -11px;
+			bottom: 0;
+			padding-top: 0;
+			padding-left: 0px;
+			margin-bottom: 0;
+			border-right: 1px solid #000;
+			border-left: 1px solid #000;
+		}
+		#contenu_fin{
+			margin: 10px;
+			padding-left:30px;
+			padding-bottom:0px;
+			font-family: 'Arial', sans-serif;
+		}
+
+		.menu_top {
+			display: block;
+			overflow: hidden;
+			width: 25px;
+			line-height: 25px;
+			padding: 10px 0;
+			margin: 10px 0 0;
+
+
+		}
+
+		.menu_bottom {
+			display: block;
+			overflow: hidden;
+			width: 25px;
+			line-height: 25px;
+			padding: 100px 0;
+			margin-top: 0px;
+
+		}
+
+		.menu_bottom_wac {
+			display: inline-block;
+			vertical-align: top;
+			transform: translate(0,100%) rotate(-90deg);
+			transform-origin: 0 0;
+			white-space: nowrap;
+		}
+
+		.menu_top_wac {
+			display: inline-block;
+			vertical-align: top;
+			transform: translate(0,100%) rotate(-90deg);
+			transform-origin: 0 0;
+			white-space: nowrap;
+		}
+
+		.menu_top_wac:after {
+			content: "";
+			float: left;
+			margin-top: 100%;
+		}
+
+		.menu_bottom_wac:after {
+			content: "";
+			float: left;
+			margin-top: 100%;
+		}
+
+
+		.bienvenue {
+			background-color: white;
+			background-repeat:no-repeat;
+			background-position: center ;
+			height: 100vh;
+			line-height:15px;
+		}
+
+		.bienvenue h1{
+			padding-left: 0px;
+			font-size: 30px;
+		}
+
+		.bienvenue h2{
+			margin-top: 0px;
+			padding-top: 0px;
+			font-size: 15px;
+		}
+		.bienvenue .lol{
+			padding-left: 50px;
+			margin-top: 0px;
+			padding-top: 10vh;
+			font-size: 10px;
+			line-height:40px;
+		}
+
+		.bienvenue a{
+			padding-left: 50px;
+		}
+
+		.QuiSuisJe {
+			padding-top: 100px;
+			text-align: left;
+			background: white;
+			padding-left: 50px;
+			padding-bottom: 100px;
+			padding-right: 10px;
+		}
+		.QuiSuisJe  p{
+			font-size: 20px;
+		}
+		.lessmore{
+			color: black
+		}
+
+		.lessmore img{
+			width: 15%;
+			max-width: 90px;
+			height:auto;
+		}
+
+
+		.OuJeVais {
+			padding-top: 100px;
+			text-align: left;
+			background: #ffe680ff;
+			padding-left: 50px;
+			padding-right: 10px;
+			padding-bottom: 100px;
+		}
+
+		.OuJeVais  p{
+			font-size: 15px;
+		}
+
+		.MeContacter {
+			padding-top: 100px;
+			padding-left: 50px;
+			text-align: left;
+			background: white;
+			padding-bottom: 100px;
+		}
+
+		.MeContacter .abientot{
+			font-size: 15px;
+		}
+
+		button {
+			background: #01CDFF;
+			background-image: -webkit-linear-gradient(top, #01CDFF);
+			background-image: -moz-linear-gradient(top, #01CDFF);
+			background-image: -ms-linear-gradient(top, #01CDFF);
+			background-image: -o-linear-gradient(top, #01CDFF);
+			background-image: linear-gradient(to bottom, #01CDFF);
+			-webkit-border-radius: 28;
+			-moz-border-radius: 28;
+			border-radius: 28px;
+			font-family: Arial;
+			color: #ffffff;
+			font-size: 20px;
+			width: 200px;
+			padding: 10px 20px 10px 20px;
+			text-decoration: none;
+			border: none;
+		}
+
+		.form-group input{
+			max-width:82%;
+			margin-top: 10px;
+			margin-bottom: 10px;
+			max-height: 50px;
+			padding: 20px;
+			outline: none;
+			border-radius: 15px;
+			outline: none;
+			font-size: 15px;
+			border-color: black;
+		}
+		.form-group input:focus{
+			max-width:82%;
+			margin-top: 10px;
+			margin-bottom: 10px;
+			max-height: 50px;
+			padding: 20px;
+			outline: none;
+			border-radius: 15px;
+			outline: none;
+			font-size: 15px;
+			border-color: #01CDFF;
+		}
+	}

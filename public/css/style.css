@@ -9,13 +9,84 @@ html, body {
 	scroll-behavior: smooth;
 	height: 100%;
 	background-attachment: fixed;
+	background-color: #F0F2F5;
 }
 .lol{
 	color:white;}
 
+	.modal {
+  display: none;
+  position: fixed;
+  padding-top: 50px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.modal-content {
+  position: relative;
+  background-color: white;
+  padding: 20px;
+  margin: auto;
+	vertical-align: middle;
+	text-align: center;
+  width: 75%;
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+	border-radius: 15px;
+}
+
+.modal-content a{
+	color: black;
+}
+.close-btn {
+  float: right;
+  color: lightgray;
+  font-size: 24px;
+  font-weight: bold;
+}
+.close-btn:hover {
+  color: darkgray;
+}
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
 	.feed_header{
 		width: 100%;
+		background-color: white;
+		position: fixed;
+		left:0;
+		top:0;
+		height: 80px;
+		-webkit-box-shadow: 0 1px 7px #888888;
+  	-moz-box-shadow: 0 1px 7px #888888;
+  	box-shadow: 0 1px 7px #888888;
 	}
+	.feed_header .shot_menu {
+		display: inline-block;
+		vertical-align: middle;
+		padding-top:15px;
+		float: right;
+		padding-right: 30px;
+	}
+	.feed_header .logo{
+		padding-left: 10px;
+		height:100%;
+		display: inline-block;
+		padding-left: 30px;
+		padding-top: 15px;
+	}
+
 
 	.feed_header textarea{
 		max-width: 95%;
@@ -83,30 +154,20 @@ html, body {
 	}
 
 	.feed{
-		margin-top: 40px;
+		padding-top: 50px;
 	}
 
 	.feed .message{
-		background-color: #EBEBEB;
-		padding: 10px;
-		margin: 0;
-		width:98%;
-		margin-bottom: 10px;
-		border-radius: 10px;
-		transition: 0.3s;
-
-	}
-
-	.feed .message:hover{
 		background-color: white;
 		padding: 10px;
 		margin: 0;
 		width:98%;
-		margin-bottom: 10px;
+		margin-bottom: 20px;
 		border-radius: 10px;
 		transition: 0.3s;
 
 	}
+
 
 	.feed_header textarea:focus{
 		max-width: 95%;
@@ -126,9 +187,8 @@ html, body {
 		margin:0;
 	}
 	.feed_header .logo img{
-		width: 60px;
-		height: auto;
-		float: left;
+		height: 50px;
+		vertical-align: middle;
 	}
 
 	.feed_header .shot_menu a{
@@ -137,6 +197,17 @@ html, body {
 		float:right;
 		padding-top: 15px;
 		padding-left: 10px;
+	}
+
+	.feed_header .shot_menu button{
+		color: black;
+		transition: 0.3s;
+		float:right;
+		padding-top: 15px;
+		padding-left: 10px;
+		border: none;
+		background-color: Transparent;
+		outline: none;
 	}
 
 	a{
@@ -157,6 +228,15 @@ html, body {
 			padding-bottom: 40px;
 			text-align: right;
 			right:0;
+		}
+		.feed_header .logo input{
+			height: 50px;
+			border-radius: 10px;
+			outline: none;
+			border: none;
+			background-color: #F0F2F5;
+			margin-left: 10px;
+			padding-left: 5px;
 		}
 		.LogInBar input{
 			border-radius: 20px;
@@ -195,7 +275,7 @@ html, body {
 
 		@media screen and (max-width: 600px) {
 			.column {
-				width: 100%;
+				width: 90%;
 			}
 		}
 
@@ -353,7 +433,7 @@ html, body {
 			font-size: 50px;
 		}
 		button:focus {outline:0;}
-		button {
+		.bienvenue button {
 			background: #01CDFF;
 			background-image: -webkit-linear-gradient(top, #01CDFF);
 			background-image: -moz-linear-gradient(top, #01CDFF);
@@ -406,12 +486,14 @@ html, body {
 
 	/* Affichage Mobile */
 	@media (max-width: 1250px) {
-
+		.feed_header .logo input{
+			display: none;
+		}
 		.contenu{
-			margin-left: auto;
-			margin-right: auto;
+			margin-left: 10px;
+			margin-right: 10px;
 			max-width: 90%;
-			margin-top: 30px;
+			padding-top: 50px;
 		}
 		.contenu h1{
 			text-align: center;

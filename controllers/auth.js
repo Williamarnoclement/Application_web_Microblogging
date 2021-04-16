@@ -2,10 +2,14 @@ const mysql = require('mysql');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const db = mysql.createConnection({
-	host: process.env.DATABASE_HOST,
+	/**host: process.env.DATABASE_HOST,
 	user: process.env.DATABASE_USER,
 	password: process.env.DATABASE_PW,
-	database: process.env.DATABASE
+	database: process.env.DATABASE**/
+	host: "localhost",
+	user: "root",
+	password: "",
+	database: "hap"
 });
 
 exports.login = async(req, res) => {
@@ -30,19 +34,18 @@ exports.login = async(req, res) => {
 			} else {
 
 				const id = results[0].id;
-				const token = jwt.sign({id : id}, process.env.JWT_SECRET, {
-					expiresIn: process.env.JWT_EXPIRES_IN
+				const token = jwt.sign({id : id}, /**process.env.JWT_SECRET**/"sup3rm0tdep4ss3", {
+					expiresIn: /**process.env.JWT_EXPIRES_IN**/"30d"
 				});
 
 				const cookieOptions = {
 					expires: new Date(
-						Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000
+						Date.now() + /**process.env.JWT_COOKIE_EXPIRES**/30 * 24 * 60 * 60 * 1000
 					),
 					httpOnly: true
 				}
 
 				res.cookie('HapSHOT', token, cookieOptions);
-				//res.render('index');
 				res.redirect('/index')
 			}
 		});
@@ -53,11 +56,7 @@ exports.login = async(req, res) => {
 }
 
 exports.register = (req,res) => {
-  //console.log(req.body.name);
-  //res.send("inscription désactivé pour le moment -" + req.body);
   if (!req.body) return res.sendStatus(400);
-  //res.send("inscription désactivé pour le moment " + req.body.name);
-  //res.send("inscription désactivé pour le moment..");
   const name = req.body.name;
   const email = req.body.email;
   const password = req.body.password;
@@ -72,7 +71,6 @@ exports.register = (req,res) => {
       })
     }
     let hashedPassword = await bcrypt.hash(password, 8);
-    //res.send(hashedPassword);
     db.query('INSERT INTO users SET ?', {name: name, email: email, password: hashedPassword}, (error, results) =>{
       if (error) {
         res.send("erreur BDD 2");

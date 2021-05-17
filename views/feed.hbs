@@ -12,83 +12,141 @@
 </head>
 
 <body class="body_one">
-  <div class="contenu">
-    <div class="feed_header">
-      <div class="logo">
-      	<img src="img/hap.png" alt="hapshot logo">
+	<div class="contenu">
+		<div class="feed_header">
+			<div class="logo">
+				<img src="img/hap.png" alt="hapshot logo">
 				<input type="text" placeholder="Search">
-      </div>
+			</div>
 			<div class="shot_menu">
 				<button id="modal-btn">Account</button>
 			</div>
-    </div>
+		</div>
 		<div class="modal">
-		  <div class="modal-content">
-		    <span class="close-btn">&times;</span>
+			<div class="modal-content">
+				<span class="close-btn">&times;</span>
 				{{#if hapshooter}}
+				<img src="img/mascotte.png" alt="mascotte" height="auto" width="70%">
 				<p>Connected as {{hapshooter}} </p>
+				<br>
+				<a href="/{{hapshooter}}">My Profile</a>
+				<br>
 				<a href="/logout">Log Out</a>
 				{{/if}}
-		  </div>
-		</div>
-    <div class="feed">
-      <div class="message">
-        <b>@user</b>
-        <p>Hello world ;)</p>
-      </div>
-      <div class="message">
-        <b>@user</b>
-        <p>Hello world ;)</p>
-      </div>
-      <div class="message">
-        <b>@user</b>
-        <p>Hello world ;)</p>
-      </div>
-      <div class="message">
-        <b>@user</b>
-        <p>Hello world ;)</p>
-      </div>
-      <div class="message">
-        <b>@user</b>
-        <p>Hello world ;)</p>
-      </div>
-    </div>
-  </div>
-
-
-	<!--<div class="footer" style="background-color:white;">
-    <div id="contenu_fin">
-			<div class="row">
-				<div class="column" >
-					<h2><a href="/">Hap</a></h2>
-					<p><a href="http://netneer.com/">About me</a></p>
-					<p><a href="">News</a></p>
-				</div>
-				<div class="column" >
-					<h2><a href="/">About</a></h2>
-					<p><a href="privacy">Privacy</a></p>
-				</div>
-				<div class="column">
-					<p><b>© William-Arno CLEMENT</b></p>
-				</div>
 			</div>
 		</div>
-	</div>-->
-	<script type="text/javascript">
-		let modalBtn = document.getElementById("modal-btn")
-		let modal = document.querySelector(".modal")
-		let closeBtn = document.querySelector(".close-btn")
-		modalBtn.onclick = function(){
-		modal.style.display = "block"
-		}
-		closeBtn.onclick = function(){
+		<div class="feed">
+
+
+			<div class="wrapper">
+				<div class="input-box">
+					<div class="tweet-area">
+						<span class="placeholder">What's hap?</span>
+						<div class="input editable" contenteditable="true" spellcheck="false"></div>
+						<div class="input readonly" contenteditable="true" spellcheck="false"></div>
+					</div>
+				</div>
+				<div class="bottom">
+					<div class="content">
+						<span class="counter">100</span>
+						<button>send to world</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="message">
+				<b>@user</b>
+				<p>Hello world ;)</p>
+			</div>
+			<div class="message">
+				<b>@user</b>
+				<p>Hello world ;)</p>
+			</div>
+			<div class="message">
+				<b>@user</b>
+				<p>Hello world ;)</p>
+			</div>
+			<div class="message">
+				<b>@user</b>
+				<p>Hello world ;)</p>
+			</div>
+			<div class="message">
+				<b>@user</b>
+				<p>Hello world ;)</p>
+			</div>
+		</div>
+	</div>
+
+<script type="text/javascript">
+let modalBtn = document.getElementById("modal-btn")
+let modal = document.querySelector(".modal")
+let closeBtn = document.querySelector(".close-btn")
+modalBtn.onclick = function(){
+	modal.style.display = "block"
+}
+closeBtn.onclick = function(){
+	modal.style.display = "none"
+}
+window.onclick = function(e){
+	if(e.target == modal){
 		modal.style.display = "none"
-		}
-		window.onclick = function(e){
-		if(e.target == modal){
-			modal.style.display = "none"
-		}
-		}
-	</script>
+	}
+}
+const wrapper = document.querySelector(".wrapper"),
+editableInput = wrapper.querySelector(".editable"),
+readonlyInput = wrapper.querySelector(".readonly"),
+placeholder = wrapper.querySelector(".placeholder"),
+counter = wrapper.querySelector(".counter"),
+button = wrapper.querySelector("button");
+
+editableInput.onfocus = ()=>{
+	placeholder.style.color = "#c5ccd3";
+}
+editableInput.onblur = ()=>{
+	placeholder.style.color = "#98a5b1";
+}
+
+editableInput.onkeyup = (e)=>{
+	let element = e.target;
+	validated(element);
+}
+editableInput.onkeypress = (e)=>{
+	let element = e.target;
+	validated(element);
+	placeholder.style.display = "none";
+}
+
+function validated(element){
+	let text;
+	let maxLength = 100;
+	let currentlength = element.innerText.length;
+
+	if(currentlength <= 0){
+		placeholder.style.display = "block";
+		counter.style.display = "none";
+		button.classList.remove("active");
+	}else{
+		placeholder.style.display = "none";
+		counter.style.display = "block";
+		button.classList.add("active");
+	}
+
+	counter.innerText = maxLength - currentlength;
+
+	if(currentlength > maxLength){
+		let overText = element.innerText.substr(maxLength); //extracting over texts
+		console.log(element.innerText);
+		overText = `<span class="highlight">${overText}</span>`; //creating new span and passing over texts
+		text = element.innerText.substr(0, maxLength) + overText; //passing overText value in textTag variable
+		readonlyInput.style.zIndex = "1";
+		counter.style.color = "#e0245e";
+		button.classList.remove("active");
+	}else{
+		readonlyInput.style.zIndex = "-1";
+		counter.style.color = "#333";
+	}
+	readonlyInput.innerHTML = text; //replacing innerHTML of readonly div with textTag value
+}
+</script>
 </body>
 </html>

@@ -7,16 +7,7 @@ app.use(cookieParser());
 const jwt = require("jsonwebtoken");
 
 const mysql2 = require('mysql');
-const db2 = mysql2.createConnection({
-  /**host: process.env.DATABASE_HOST,
-  user: process.env.DATABASE_USER,
-  password: process.env.DATABASE_PW,
-  database: process.env.DATABASE**/
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "hap"
-});
+var db2 = require('../db/db.js');
 
 router.get('/', (req,res) => {
   const token = req.cookies['HapSHOT']

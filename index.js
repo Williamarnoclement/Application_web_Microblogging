@@ -21,6 +21,10 @@ app.use(bodyParser.urlencoded({
 /***************ROUTES***************/
 app.use('/', require('./routes/pages'));
 app.use('/auth', require('./routes/auth'));
+//set API access
+//Send and get messages
+const postsApiRoute = require('./routes/api/posts');
+app.use("/api/posts", postsApiRoute);
 /***************VIEWS***************/
 //set view engine HBS
 app.set('view engine', 'hbs');

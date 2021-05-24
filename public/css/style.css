@@ -302,8 +302,7 @@ html, body {
 		width: 98%;
 		margin: 0 auto;
 	}
-
-	.feed .message{
+	.message{
 		background-color: white;
 		padding: 10px;
 		margin: 0;
@@ -311,6 +310,12 @@ html, body {
 		border-radius: 10px;
 		transition: 0.3s;
 		box-shadow: 0px 10px 15px rgba(0,0,0,0.1);
+	}
+	.message a{
+		color: #02CDFF;
+	}
+	.message .date{
+		color: #EBEBEB;
 	}
 
 

@@ -60,6 +60,7 @@ router.get('/index', (req,res) => {
   res.redirect('/');
 });
 
+
 router.get('/privacy', (req, res) =>{
   res.render('privacy');
 });

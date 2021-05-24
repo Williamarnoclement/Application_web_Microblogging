@@ -18,24 +18,26 @@ router.get("/", (req, res, next) => {
 **/
 /***ici on recupere la liste des posts*/
 try{
-  db.query('SELECT * FROM msg', async (error,results) =>{
+  // var sql = "SELECT users.name AS user, products.name AS favorite FROM users JOIN products ON users.favorite_product = products.id";
+  db.query('SELECT msg.date AS date, msg.text AS text, users.name AS name FROM msg JOIN users ON msg.user=users.id', async (error,results) =>{
     if (!results) {
       //on renvoie un json vide
+      console.log("query error");
       res.sendStatus(400);
     } else {
       //on renvoie les resultats
       //res.status(200).send(results);
 
       var reformated_res = [];
-
+      console.log(results);
       for(var i in results) {
         var item = results[i];
         /// GET NAME FROM ID ----------------
         var obj = {
-          'postedBy': "test",
+          'postedBy': item.name,
           'date': item.date,
           'content': item.text,
-          'profilePic': item.face
+          'profilePic': "go"
         }
         reformated_res.push(obj);
       }

@@ -14,7 +14,7 @@ function createPostHtml(postData) {
 
                 <div class='message'>
                         <div class='header'>
-                            <a href='/profile/${postData.postedBy}' class='displayName'>@${displayName}</a>
+                            <a href='/ot/${postData.postedBy}' class='displayName'>@${displayName}</a>
                             <span class='date'>${timestamp}</span>
                         </div>
                         <div class='postBody'>

@@ -64,7 +64,7 @@ exports.register = (req,res) => {
     let hashedPassword = await bcrypt.hash(password, 8);
     db.query('INSERT INTO users SET ?', {name: name, email: email, password: hashedPassword}, (error, results) =>{
       if (error) {
-        res.send("erreur BDD 2");
+        res.send("erreur BDD insertion user");
       } else {
         res.redirect('/login');
       }

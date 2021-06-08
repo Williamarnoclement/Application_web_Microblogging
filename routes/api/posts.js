@@ -4,6 +4,7 @@ const router = express.Router();
 const bodyParser = require("body-parser")
 var db = require('../../db/db.js');
 
+const jwt = require("jsonwebtoken");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -19,7 +20,7 @@ router.get("/", (req, res, next) => {
 /***ici on recupere la liste des posts*/
 try{
   // var sql = "SELECT users.name AS user, products.name AS favorite FROM users JOIN products ON users.favorite_product = products.id";
-  db.query('SELECT msg.date AS date, msg.text AS text, users.name AS name FROM msg JOIN users ON msg.user=users.id', async (error,results) =>{
+  db.query('SELECT msg.date AS date, msg.text AS text, users.name AS name FROM msg JOIN users ON msg.user=users.id ORDER BY date DESC', async (error,results) =>{
     if (!results) {
       //on renvoie un json vide
       console.log("query error");
@@ -51,26 +52,29 @@ try{
 
 router.post("/", async (req, res, next) => {
 
-  if (!req.body.content) {
-    console.log("Content param not sent with request");
-    return res.sendStatus(400);
+  //if (!req.body.msg) {
+    console.log("new msg : "+ req.body.msg);
+    //return res.sendStatus(400);
+  //}
+  /**var postData = {
+    content: req.body.content
+  }**/
+  console.log("insertion demandée");
+
+  const token = req.cookies['HapSHOT']
+  if (!(token == null)){
+    var decoded = jwt.verify(token, /**process.env.JWT_SECRET**/"sup3rm0tdep4ss3");
+    const myID = decoded['id'];
+    const msg = req.body.msg;
+    db.query('INSERT INTO msg SET ?', {user: myID, text: msg}, (error, results) =>{
+      if (error) {
+        res.send("erreur BDD insertion msg");
+      } else {
+        console.log("insertion réussie");
+        res.redirect('/home');
+      }
+    });
   }
-
-  var postData = {
-    content: req.body.content,
-    postedBy: req.session.user
-  }
-
-  Post.create(postData)
-  .then(async newPost => {
-    newPost = await User.populate(newPost, { path: "postedBy" })
-
-    res.status(201).send(newPost);
-  })
-  .catch(error => {
-    console.log(error);
-    res.sendStatus(400);
-  })
 })
 
 module.exports = router;

@@ -11,6 +11,15 @@ html, body {
 	background-attachment: fixed;
 	background-color: #F0F2F5;
 }
+*:focus {
+    outline: none;
+}
+.sharing_area{
+	width: 98%;
+	height:140px;
+	resize:none;
+	border: none;
+}
 /**msg box**/
 .contenu_tmp{
 	width: 90%;

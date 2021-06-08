@@ -21,6 +21,7 @@ app.use(bodyParser.urlencoded({
 /***************ROUTES***************/
 app.use('/', require('./routes/pages'));
 app.use('/auth', require('./routes/auth'));
+app.use('/ot', require('./routes/profiles'));
 //set API access
 //Send and get messages
 const postsApiRoute = require('./routes/api/posts');

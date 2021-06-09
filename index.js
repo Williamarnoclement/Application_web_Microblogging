@@ -6,7 +6,6 @@ const server = app.listen(port, () => console.log("Server listening on port " + 
 /***************DATABASE***************/
 const mysql = require('mysql');
 const bcrypt = require('bcryptjs');
-
 //Cookie parser is used to crawl JWT_SECRET
 const cookieParser = require('cookie-parser');
 app.use(cookieParser());

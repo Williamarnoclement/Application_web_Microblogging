@@ -6,16 +6,16 @@
   <meta name="description" content="Hap is a new way to share yourself, discover yourself and follow people you care about. ">
   <meta name="keywords" content="hap, hapshot, social, app, hap.sh, blog, microblog, social network">
   <meta name="viewport" content="width=device-width">
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="../css/style.css" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="img/hap.png" />
+  <link rel="icon" href="../img/hap.png" />
 </head>
 
 <body class="body_one">
   <div class="contenu">
     <div class="feed_header">
       <div class="logo">
-        <img src="img/hap.png" alt="hapshot logo">
+        <img src="../img/hap.png" alt="hapshot logo">
         <input type="text" placeholder="Search">
       </div>
       <div class="shot_menu">
@@ -26,7 +26,7 @@
       <div class="modal-content">
         <span class="close-btn">&times;</span>
         {{#if hapshooter}}
-        <img src="img/mascotte.png" alt="mascotte" height="auto" width="70%">
+        <img src="../img/mascotte.png" alt="mascotte" height="auto" width="70%">
         <p>Connected as {{hapshooter}} </p>
         <br>
         <a href="/{{hapshooter}}">My Profile</a>
@@ -39,14 +39,14 @@
       <div class="profile_header">
         <!--<img src="" alt="">-->
         <div class="name">
-          {{hapshooter}}
+          {{user}}
         </div>
       </div>
       <div class="msg_container"></div>
     </div>
   </div>
-  <script src="js/common.js"></script>
+  <!--<script src="../js/common.js"></script>-->
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-  <script src="js/profile.js"></script>
+  <script src="../js/profile.js"></script>
 </body>
 </html>

@@ -21,7 +21,7 @@ router.get('/', (req,res) => {
 	      })
 			} else {
         res.render('profile',{
-          hapshooter : results[0].name
+          user : results[0].name
         })
       }
     })
@@ -31,5 +31,42 @@ router.get('/', (req,res) => {
     })
   }
 });
+
+router.get('/:username', (req,res,next) => {
+  const token = req.cookies['HapSHOT']
+  //let wac =  getProfileFromUsername(req.params.username);
+
+  getProfileFromUsername(req.params.username, function(result) {
+    if (result.id != 0) {
+      res.render('profile',{
+        id:result.id,
+        user : result.name
+      })
+    }else{
+      res.redirect('ot');
+    }
+
+  });
+});
+
+
+function getProfileFromUsername(username,callback){
+  db.query('SELECT id, name, email FROM users WHERE name=?',username, async (error,results) =>{
+    console.log(results[0]);
+    if (!results) {
+      callback({
+        id: 0,
+        name : 'User does not exists',
+        email : ''
+      })
+    }
+    callback ({
+      id: results[0].id,
+      name : results[0].name,
+      email : results[0].email
+    })
+
+  })
+}
 
 module.exports = router;

@@ -10,17 +10,17 @@ exports.login = async(req, res) => {
 
     if (!email || !password) {
       return res.status(400).render('login',{
-        message : 'Vous avez oublié le login et/ou le mot de passe.'
+        message : 'Missing eMail or password'
       })
 		}
 		db.query('SELECT * FROM users WHERE email = ?',[email], async (error,results) =>{
 			if (!results) {
 				res.status(401).render('login',{
-	        message : 'Pas d\'utilisateur trouvé...'
+	        message : 'User does not exist'
 	      })
 			} else if(!(await bcrypt.compare(password, results[0].password))){
 				res.status(401).render('login',{
-					message : 'Mot de passe incorrecte.'
+					message : 'Bad password'
 				})
 			} else {
 
@@ -37,7 +37,7 @@ exports.login = async(req, res) => {
 				}
 
 				res.cookie('HapSHOT', token, cookieOptions);
-				res.redirect('/index')
+				res.redirect('/send')
 			}
 		});
 
@@ -58,7 +58,7 @@ exports.register = (req,res) => {
     }
     if (results.length > 0) {
       return res.render('register',{
-        message : 'Le courrier electronique est déjà utilisé !'
+        message : 'eMail already used..'
       })
     }
     let hashedPassword = await bcrypt.hash(password, 8);
@@ -66,7 +66,7 @@ exports.register = (req,res) => {
       if (error) {
         res.send("erreur BDD insertion user");
       } else {
-        res.redirect('/login');
+        res.redirect('/send');
       }
     });
   });

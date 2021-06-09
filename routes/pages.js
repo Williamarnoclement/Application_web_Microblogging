@@ -34,16 +34,11 @@ router.get('/', (req,res) => {
           message : 'WTF'
         })
       } else {
-        /**res.render('index',{
-        hapshooter : results[0].name
-      })**/
       res.redirect('home');
     }
   })
 } else {
-  res.render('index',{
-    message : 'Hello !'
-  })
+  res.render('index')
 }
 });
 
@@ -64,7 +59,7 @@ router.get('/logout', (req,res)=>{
 router.get('/login', (req,res) => {
   const token = req.cookies['HapSHOT']
   if (!(token == null)){
-    res.redirect('index');
+    res.redirect('home');
   } else {
     res.render('login');
   }
@@ -110,7 +105,7 @@ router.get('/send', (req, res) =>{
               res.end("bad email error");
             }else{
               res.render('index',{
-                message : 'Hello !'
+                message : 'Mail sent to your adress !'
               })
             }
           });
@@ -118,9 +113,7 @@ router.get('/send', (req, res) =>{
       }
     })
   } else {
-    res.render('index',{
-      message : 'Hello !'
-    })
+    res.render('index')
   }
 });
 
@@ -133,11 +126,12 @@ router.get('/verify', (req, res) =>{
       {
           console.log("email is verified");
           db2.query('SELECT id,name,email,active FROM users WHERE email = ?',mailOptions.to, async (error,results) =>{
-            db2.query('UPDATE users SET active=true WHERE id=?', {id: results[0].id}, (error, results2) =>{
+            console.log(results[0].id);
+            db2.query('UPDATE users SET active=true WHERE id=?',results[0].id, (error, results2) =>{
               if (error) {
                 res.send("erreur BDD update active user");
               } else {
-                res.redirect('/login');
+                res.redirect('/home');
               }
             });
           })
@@ -170,7 +164,9 @@ router.get('/home', (req,res) => {
             hapshooter : results[0].name
           })
         } else{
-          res.redirect('/send')
+          res.render('index',{
+            message : 'Account not activated yet.'
+          })
         }
       }
     })

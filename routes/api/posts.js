@@ -1,64 +1,84 @@
 const express = require('express');
-const app = express();
 const router = express.Router();
-const bodyParser = require("body-parser")
-var db = require('../../db/db.js');
 
+var app = express();
+var cookieParser = require('cookie-parser');
+app.use(cookieParser());
 const jwt = require("jsonwebtoken");
 
-app.use(bodyParser.urlencoded({ extended: false }));
 
-router.get("/", (req, res, next) => {
-  /**
-  Post.find()
-  .then(results => res.status(200).send(results))
-  .catch(error => {
-  console.log(error);
-  res.sendStatus(400);
-})
-**/
-/***ici on recupere la liste des posts*/
-try{
-  // var sql = "SELECT users.name AS user, products.name AS favorite FROM users JOIN products ON users.favorite_product = products.id";
-  db.query('SELECT msg.date AS date, msg.text AS text, users.name AS name FROM msg JOIN users ON msg.user=users.id ORDER BY date DESC', async (error,results) =>{
-    if (!results) {
-      //on renvoie un json vide
-      console.log("query error");
-      res.sendStatus(400);
-    } else {
-      //on renvoie les resultats
-      //res.status(200).send(results);
+const mysql = require('mysql');
+var db = require('../../db/db.js');
 
-      var reformated_res = [];
-      console.log(results);
-      for(var i in results) {
-        var item = results[i];
-        /// GET NAME FROM ID ----------------
-        var obj = {
-          'postedBy': item.name,
-          'date': item.date,
-          'content': item.text,
-          'profilePic': "go"
+router.get('/', (req,res) => {
+  console.log("accès lecture générique");
+  /***ici on recupere la liste des posts*/
+  try{
+    // var sql = "SELECT users.name AS user, products.name AS favorite FROM users JOIN products ON users.favorite_product = products.id";
+    db.query('SELECT msg.date AS date, msg.text AS text, users.name AS name FROM msg JOIN users ON msg.user=users.id ORDER BY date DESC', async (error,results) =>{
+      if (!results) {
+        //on renvoie un json vide
+        console.log("query error");
+        res.sendStatus(400);
+      } else {
+        //on renvoie les resultats
+        var reformated_res = [];
+        console.log(results);
+        for(var i in results) {
+          var item = results[i];
+          /// GET NAME FROM ID ----------------
+          var obj = {
+            'postedBy': item.name,
+            'date': item.date,
+            'content': item.text,
+            'profilePic': "go"
+          }
+          reformated_res.push(obj);
         }
-        reformated_res.push(obj);
+        res.status(200).send(reformated_res);
       }
-      res.status(200).send(reformated_res);
-    }
-  });
-} catch {
-  console.log(error);
-}
-})
+    });
+  } catch {
+    console.log(error);
+  }
+});
+
+
+router.get('/:username', (req, res, next) => {
+  /***ici on recupere la liste des posts*/
+  console.log("accès lecture username");
+    var tools = require('../../controllers/tools');
+    tools.getProfileFromUsername(req.params.username, function(result2) {
+      if (result2.id != 0) {
+        db.query('SELECT msg.date AS date, msg.text AS text, users.name AS name FROM msg JOIN users ON msg.user=users.id WHERE users.id=? ORDER BY date DESC;', result.id, async (error,results) =>{
+          if (result2.id == 0) {
+            //on renvoie un json vide
+            console.log("query error");
+            res.sendStatus(400);
+          } else {
+            var reformated_res = [];
+            console.log(result2);
+            for(var i in result2) {
+              var item = result2[i];
+              /// GET NAME FROM ID ----------------
+              var obj = {
+                'postedBy': item.name,
+                'date': item.date,
+                'content': item.text,
+                'profilePic': "go"
+              }
+              reformated_res.push(obj);
+            }
+            res.status(200).send(reformated_res);
+          }
+        });
+      }else{
+        res.send('user does not exists');
+      }
+    })
+});
 
 router.post("/", async (req, res, next) => {
-
-  //if (!req.body.msg) {
-    console.log("new msg : "+ req.body.msg);
-    //return res.sendStatus(400);
-  //}
-  /**var postData = {
-    content: req.body.content
-  }**/
   console.log("insertion demandée");
 
   const token = req.cookies['HapSHOT']
@@ -75,6 +95,6 @@ router.post("/", async (req, res, next) => {
       }
     });
   }
-})
+});
 
 module.exports = router;

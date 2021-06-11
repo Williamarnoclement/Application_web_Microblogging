@@ -15,7 +15,7 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({
-  extended: true
+  extended: false
 }));
 /***************ROUTES***************/
 app.use('/', require('./routes/pages'));

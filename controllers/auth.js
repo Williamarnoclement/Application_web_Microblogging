@@ -37,7 +37,7 @@ exports.login = async(req, res) => {
 				}
 
 				res.cookie('HapSHOT', token, cookieOptions);
-				res.redirect('/send')
+				res.redirect('/home')
 			}
 		});
 

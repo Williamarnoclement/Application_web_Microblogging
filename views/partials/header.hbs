@@ -1,0 +1,30 @@
+<div class="feed_header">
+  <div class="logo">
+    <a href="/home"><img src="img/hap.png" alt="hapshot logo"></a>
+    <input type="text" placeholder="Search">
+  </div>
+  <div class="shot_menu">
+    <button id="modal-btn">Account</button>
+  </div>
+</div>
+<div class="side_menu">
+  <li>
+    <a href="/home">Home</a>
+  </li>
+  <li>
+    <a href="/ot">Me</a>
+  </li>
+</div>
+<div class="modal">
+  <div class="modal-content">
+    <span class="close-btn">&times;</span>
+    {{#if hapshooter}}
+    <img src="img/mascotte.png" alt="mascotte" height="auto" width="70%">
+    <p>Connected as {{hapshooter}} </p>
+    <br>
+    <a href="/ot/{{hapshooter}}">My Profile</a>
+    <br>
+    <a href="/logout">Log Out</a>
+    {{/if}}
+  </div>
+</div>

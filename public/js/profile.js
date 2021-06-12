@@ -1,10 +1,13 @@
+const hpsht = document.getElementById('hpshtr')
+const hpshtr = hpsht.getAttribute('hpsht')
+
 $(document).ready(() => {
-    $.get("/api/posts/","{{hapshooter}}", results => {
+    $.get("/api/posts/"+hpshtr, results => {
         outputPosts(results, $(".msg_container"));
     })
 })
 
-console.log("ceci est un test");
+console.log(hpshtr);
 
 function createPostHtml(postData) {
 
@@ -16,7 +19,7 @@ function createPostHtml(postData) {
 
                 <div class='message'>
                         <div class='header'>
-                            <a href='/ot/${postData.postedBy}' class='displayName'>@${displayName}</a>
+                            
                             <span class='date'>${timestamp}</span>
                         </div>
                         <div class='postBody'>

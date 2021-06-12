@@ -13,46 +13,27 @@
 
 <body class="body_one">
   <div class="contenu">
-    <div class="feed_header">
-      <div class="logo">
-        <img src="../img/hap.png" alt="hapshot logo">
-        {{#if hapshooter}}
-        <input type="text" placeholder="Search">
-        {{/if}}
-      </div>
-      <div class="shot_menu">
-        {{#if hapshooter}}
-        <button id="modal-btn">Account</button>
-        {{/if}}
-
-      </div>
+    <div hidden>
+      <span id="hpshtr" hpsht="{{user}}"></span>
     </div>
-    <div class="modal">
-      <div class="modal-content">
-        <span class="close-btn">&times;</span>
-        {{#if hapshooter}}
-        <img src="../img/mascotte.png" alt="mascotte" height="auto" width="70%">
-        <p>Connected as {{hapshooter}} </p>
-        <br>
-        <a href="/{{hapshooter}}">My Profile</a>
-        <br>
-        <a href="/logout">Log Out</a>
-        {{/if}}
-      </div>
-    </div>
+    {{> header0}}
     <div class="feed">
       <div class="profile_header">
         <!--<img src="" alt="">-->
-        <div class="name">
-          {{user}}
-        </div>
+        <h1>
+          @{{user}}
+          {{#when user 'eq' hapshooter}}
+             <p style="color:blue">It's you !</p>
+          {{/when}}
+          {{#when user 'noteq' hapshooter}}
+             <button type="submit" id="Follow" class="follow active">Follow</button>
+          {{/when}}
+        </h1>
       </div>
       <div class="msg_container"></div>
     </div>
   </div>
-  {{#if hapshooter}}
   <script src="../js/common.js"></script>
-  {{/if}}
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   <script src="../js/profile.js"></script>
 </body>

@@ -27,8 +27,24 @@ const postsApiRoute = require('./routes/api/posts');
 app.use("/api/posts", postsApiRoute);
 /***************VIEWS***************/
 //set view engine HBS
-app.set('view engine', 'hbs');
+const hbs = require('hbs');
+hbs.registerPartials(path.join(__dirname, "/views/partials"));
+hbs.registerHelper( "when",function(operand_1, operator, operand_2, options) {
+  var operators = {
+   'eq': function(l,r) { return l == r; },
+   'noteq': function(l,r) { return l != r; },
+   'gt': function(l,r) { return Number(l) > Number(r); },
+   'or': function(l,r) { return l || r; },
+   'and': function(l,r) { return l && r; },
+   '%': function(l,r) { return (l % r) === 0; }
+  }
+  , result = operators[operator](operand_1,operand_2);
+
+  if (result) return options.fn(this);
+  else  return options.inverse(this);
+});
 //set 'views' folder as views
+app.set('view engine', 'hbs');
 app.set('views', 'views');
 //define public Directory as accessible by everyone by making it static
 const publicDirectory = path.join(__dirname, './public');

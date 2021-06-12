@@ -21,7 +21,8 @@ router.get('/', (req,res) => {
 	      })
 			} else {
         res.render('profile',{
-          user : results[0].name
+          user : results[0].name,
+          hapshooter : results[0].name
         })
       }
     })
@@ -35,10 +36,36 @@ router.get('/:username', (req,res,next) => {
   var tools = require('../controllers/tools');
   tools.getProfileFromUsername(req.params.username, function(result) {
     if (result.id != 0) {
+      /**
       res.render('profile',{
         id:result.id,
         user : result.name
       })
+      **/
+      const token = req.cookies['HapSHOT']
+      if (!(token == null)){
+        var decoded = jwt.verify(token, /**process.env.JWT_SECRET**/"sup3rm0tdep4ss3");
+        const myID = decoded['id'];
+        db.query('SELECT * FROM users WHERE id = ?',myID, async (error,results) =>{
+          if (!results) {
+            res.render('profile',{
+              id:result.id,
+              user : result.name
+            })
+    			} else {
+            res.render('profile',{
+              id:result.id,
+              user : result.name,
+              hapshooter : results[0].name
+            })
+          }
+        })
+      } else {
+        res.render('profile',{
+          id:result.id,
+          user : result.name
+        })
+      }
     }else{
       res.redirect('/ot');
     }

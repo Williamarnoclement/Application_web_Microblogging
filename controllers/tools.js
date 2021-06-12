@@ -3,8 +3,9 @@ var db = require('../db/db.js');
 module.exports = {
   getProfileFromUsername : function (username,callback){
     db.query('SELECT id, name, email FROM users WHERE name=?',username, async (error,results) =>{
+      console.log("mad");
       console.log(results[0]);
-      if (typeof results[0] == 'undefined') {
+      if (typeof results[0] == 'undefined' || !results) {
         console.log("noooooope"),
         callback({
           id: 0,

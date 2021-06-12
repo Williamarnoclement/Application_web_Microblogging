@@ -50,16 +50,16 @@ router.get('/:username', (req, res, next) => {
     var tools = require('../../controllers/tools');
     tools.getProfileFromUsername(req.params.username, function(result2) {
       if (result2.id != 0) {
-        db.query('SELECT msg.date AS date, msg.text AS text, users.name AS name FROM msg JOIN users ON msg.user=users.id WHERE users.id=? ORDER BY date DESC;', result.id, async (error,results) =>{
-          if (result2.id == 0) {
+        db.query('SELECT msg.date AS date, msg.text AS text, users.name AS name FROM msg JOIN users ON msg.user=users.id WHERE users.id=? ORDER BY date DESC;', result2.id, async (error,results) =>{
+          if (results.id == 0) {
             //on renvoie un json vide
             console.log("query error");
             res.sendStatus(400);
           } else {
             var reformated_res = [];
-            console.log(result2);
-            for(var i in result2) {
-              var item = result2[i];
+            console.log(results);
+            for(var i in results) {
+              var item = results[i];
               /// GET NAME FROM ID ----------------
               var obj = {
                 'postedBy': item.name,

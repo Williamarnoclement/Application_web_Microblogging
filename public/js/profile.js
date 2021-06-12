@@ -19,7 +19,7 @@ function createPostHtml(postData) {
 
                 <div class='message'>
                         <div class='header'>
-                            
+
                             <span class='date'>${timestamp}</span>
                         </div>
                         <div class='postBody'>

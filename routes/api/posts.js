@@ -86,14 +86,18 @@ router.post("/", async (req, res, next) => {
     var decoded = jwt.verify(token, /**process.env.JWT_SECRET**/"sup3rm0tdep4ss3");
     const myID = decoded['id'];
     const msg = req.body.msg;
-    db.query('INSERT INTO msg SET ?', {user: myID, text: msg}, (error, results) =>{
-      if (error) {
-        res.send("erreur BDD insertion msg");
-      } else {
-        console.log("insertion réussie");
-        res.redirect('/home');
-      }
-    });
+    if (msg != ""){
+      db.query('INSERT INTO msg SET ?', {user: myID, text: msg}, (error, results) =>{
+        if (error) {
+          res.send("erreur BDD insertion msg");
+        } else {
+          console.log("insertion réussie");
+          res.redirect('/home');
+        }
+      });
+    } else {
+      res.redirect('/home');
+    }
   }
 });
 

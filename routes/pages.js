@@ -167,6 +167,7 @@ router.get('/home', (req,res) => {
           res.render('index',{
             message : 'Account not activated yet.'
           })
+          console.log(mailOptions);
         }
       }
     })
